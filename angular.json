@@ -99,6 +99,39 @@
           }
         }
       }
+    },
+    "marble": {
+      "projectType": "library",
+      "root": "marble",
+      "sourceRoot": "marble/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "marble/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "marble/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "marble/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "marble/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }
