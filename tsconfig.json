@@ -12,7 +12,10 @@
     "paths": {
       "marble": [
         "dist/marble"
-      ]
+      ],
+      "@angular/*": [
+        "./node_modules/@angular/*"
+     ],
     },
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
