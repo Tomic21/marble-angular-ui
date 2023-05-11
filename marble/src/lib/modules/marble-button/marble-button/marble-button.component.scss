@@ -1,0 +1,49 @@
+.marble-button {
+    position: relative;
+    padding: 1rem 2rem;
+    color: white;
+    font-weight: 800;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.editor {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.preview {
+    padding: 1rem;
+}
+.preview-text {
+    margin: 1rem 0;
+}
+
+.options-container {
+    display: flex;
+    margin: 1rem 0rem;
+}
+
+.danger {
+    background: red;
+}
+.success {
+    background: green;
+}
+.warning {
+    background: orangered;
+}
+.basic {
+    background: blue;
+}
+
+.control-buttons {
+    display: flex;
+}

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MarbleModule } from 'marble/src/public-api';
+import { MarbleButtonModule } from 'marble/src/lib/modules/marble-button/marble-button.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { MarbleModule } from 'marble/src/public-api';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MarbleModule
+    MarbleButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

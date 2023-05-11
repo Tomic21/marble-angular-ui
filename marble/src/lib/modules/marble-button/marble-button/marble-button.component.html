@@ -1,0 +1,32 @@
+<button (click)="click.emit()" [class]="'marble-button' + ' ' + specification.buttonClass">
+    <span>{{ text }}</span>
+    <button *ngIf="!isPreview" (click)="toggleEditorMode()">Edit</button>
+</button>
+
+<div class="editor" *ngIf="editorMode">
+    <div class="preview">
+        <div class="preview-text">Preview</div>
+        <lib-marble-button
+            *ngIf="!isPreview"
+            [isPreview]="true"
+            [specification]="specification"
+            [text]="text"
+        ></lib-marble-button>
+    </div>
+    <div class="options-container">
+        <button (click)="handleClassChange('danger')" class="marble-button danger">danger</button>
+        <button (click)="handleClassChange('success')" class="marble-button success">success</button>
+        <button (click)="handleClassChange('warning')" class="marble-button warning">warning</button>
+        <button (click)="handleClassChange('basic')" class="marble-button basic">basic</button>
+    </div>
+
+    <div class="control-buttons">
+        <lib-marble-button
+            (click)="toggleEditorMode()"
+            *ngIf="!isPreview"
+            [isPreview]="true"
+            [text]="'Exit'"
+        ></lib-marble-button>
+        <lib-marble-button *ngIf="!isPreview" [isPreview]="true" [text]="'Save'"></lib-marble-button>
+    </div>
+</div>
