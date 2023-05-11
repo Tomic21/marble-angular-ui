@@ -1,11 +1,11 @@
-<button (click)="click.emit()" [class]="'marble-button' + ' ' + specification.buttonClass">
-    <span>{{ text }}</span>
-    <button *ngIf="!isPreview" (click)="toggleEditorMode()">Edit</button>
+<button (click)="click.emit()" [class]="'marble-button' + ' ' + getButtonStatusClass()">
+    <span>{{ getButtonText() }}</span>
+    <div *ngIf="!isPreview" (click)="toggleEditorMode()" class="edit-icon">Edit</div>
 </button>
 
 <div class="editor" *ngIf="editorMode">
     <div class="preview">
-        <div class="preview-text">Preview</div>
+        <div class="preview-text">Live Preview:</div>
         <lib-marble-button
             *ngIf="!isPreview"
             [isPreview]="true"
@@ -14,10 +14,34 @@
         ></lib-marble-button>
     </div>
     <div class="options-container">
-        <button (click)="handleClassChange('danger')" class="marble-button danger">danger</button>
-        <button (click)="handleClassChange('success')" class="marble-button success">success</button>
-        <button (click)="handleClassChange('warning')" class="marble-button warning">warning</button>
-        <button (click)="handleClassChange('basic')" class="marble-button basic">basic</button>
+        <lib-marble-button
+            (click)="handleClassChange('danger')"
+            *ngIf="!isPreview"
+            [isPreview]="true"
+            [status]="'danger'"
+            [text]="'danger'"
+        ></lib-marble-button>
+        <lib-marble-button
+            (click)="handleClassChange('success')"
+            *ngIf="!isPreview"
+            [isPreview]="true"
+            [status]="'success'"
+            [text]="'success'"
+        ></lib-marble-button>
+        <lib-marble-button
+            (click)="handleClassChange('warning')"
+            *ngIf="!isPreview"
+            [isPreview]="true"
+            [status]="'warning'"
+            [text]="'warning'"
+        ></lib-marble-button>
+        <lib-marble-button
+            (click)="handleClassChange('basic')"
+            *ngIf="!isPreview"
+            [isPreview]="true"
+            [status]="'basic'"
+            [text]="'basic'"
+        ></lib-marble-button>
     </div>
 
     <div class="control-buttons">
@@ -27,6 +51,5 @@
             [isPreview]="true"
             [text]="'Exit'"
         ></lib-marble-button>
-        <lib-marble-button *ngIf="!isPreview" [isPreview]="true" [text]="'Save'"></lib-marble-button>
     </div>
 </div>

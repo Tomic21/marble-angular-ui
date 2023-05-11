@@ -13,9 +13,22 @@ app.use(express.static('website'));
 
 const port = 9000;
 
-app.get('/', (req, res) => {});
+app.get('/marble', (req, res) => {
+    const key = req.query.key;
+    const config = fs.readFileSync(`src/assets/${key}.json`);
+    res.send(config);
+});
 
-app.post('/', (req, res) => {});
+app.post('/marble', (req, res) => {
+    const key = req.query.key;
+    const body = JSON.stringify(req.body);
+    console.log(key);
+    console.log(body);
+
+    fs.writeFileSync(`src/assets/${key}.json`, body);
+
+    res.send({ message: 'success' });
+});
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
