@@ -1,0 +1,52 @@
+/* Set of colors used trough angular-marble-ui */
+
+/* GREYS */
+/* Text, backgrounds, panels, form controls */
+
+/* Best use grey 600, 700 and 800 for labels */
+/* 50, 100 are best used for backgrounds */
+
+$grey50: hsl(220, 24%, 96%);
+$grey100: hsl(218, 20%, 85%);
+$grey200: hsl(217, 16%, 75%);
+$grey300: hsl(216, 12%, 65%);
+$grey400: hsl(215, 8%, 55%);
+$grey500: hsl(214, 12%, 45%);
+$grey600: hsl(213, 14%, 35%);
+$grey700: hsl(212, 16%, 25%);
+$grey800: hsl(211, 20%, 15%);
+$grey900: hsl(210, 22%, 7%);
+
+$danger50: hsl(9, 82%, 96%);
+$danger100: hsl(8, 77%, 85%);
+$danger200: hsl(7, 73%, 75%);
+$danger300: hsl(6, 69%, 65%);
+$danger400: hsl(5, 65%, 55%);
+$danger500: hsl(4, 69%, 45%);
+$danger600: hsl(3, 73%, 35%);
+$danger700: hsl(2, 77%, 25%);
+$danger700: hsl(1, 81%, 15%);
+$danger800: hsl(1, 83%, 10%);
+$danger900: hsl(0, 86%, 6%);
+
+$success50: hsl(136, 78%, 90%);
+$success100: hsl(134, 74%, 82%);
+$success200: hsl(132, 70%, 73%);
+$success300: hsl(131, 66%, 64%);
+$success400: hsl(130, 63%, 55%);
+$success500: hsl(128, 66%, 46%);
+$success600: hsl(126, 70%, 37%);
+$success700: hsl(125, 74%, 28%);
+$success800: hsl(125, 79%, 20%);
+$success900: hsl(122, 85%, 12%);
+
+$warning50: hsl(52, 96%, 84%);
+$warning100: hsl(50, 94%, 77%);
+$warning200: hsl(48, 91%, 70%);
+$warning300: hsl(45, 88%, 61%);
+$warning400: hsl(43, 85%, 52%);
+$warning500: hsl(40, 88%, 44%);
+$warning600: hsl(37, 90%, 35%);
+$warning700: hsl(33, 92%, 26%);
+$warning800: hsl(30, 94%, 18%);
+$warning900: hsl(26, 96%, 13%);
