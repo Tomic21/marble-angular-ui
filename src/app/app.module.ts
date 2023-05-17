@@ -1,20 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MarbleButtonModule } from 'marble/src/lib/modules/marble-button/marble-button.module';
-
+import { MarbleModule, MarbleButtonModule } from 'marble/src/public-api';
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MarbleButtonModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [BrowserModule, AppRoutingModule, MarbleButtonModule, MarbleModule.forRoot({ production: false })],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

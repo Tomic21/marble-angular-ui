@@ -3,5 +3,5 @@
  */
 
 export * from './lib/services/marble.service';
-export * from './lib/marble.component';
-export * from './lib/marble.module';
+export * from './lib/modules/marble/marble.module';
+export * from './lib/modules/marble-button/marble-button.module';
