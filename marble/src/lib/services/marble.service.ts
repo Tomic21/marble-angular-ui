@@ -12,7 +12,7 @@ export class MarbleService {
 
     constructor(private apiService: ApiService, @Inject(CONFIG) private config: any) {
         if (!config.production) {
-            this.init(config)
+            this.init()
                 .pipe(
                     switchMap((response) => {
                         this.componentsMap = response;
@@ -20,10 +20,7 @@ export class MarbleService {
 
                         const joinedCalls = {};
                         for (const key of Object.keys(this.componentsMap)) {
-                            joinedCalls[key] = this.apiService.get([
-                                { path: 'marble' },
-                                { query: 'componentKey', value: key }
-                            ]);
+                            joinedCalls[key] = this.fetchComponentData(key);
                         }
                         return forkJoin(joinedCalls);
                     })
@@ -35,12 +32,12 @@ export class MarbleService {
         }
     }
 
-    public init(config) {
+    public init() {
         return this.apiService.post([{ path: 'marble', value: 'init' }], {});
     }
 
     private fetchComponentData(componentKey) {
-        return this.apiService.get([{ path: 'marble' }, { query: 'component', value: componentKey }]);
+        return this.apiService.get([{ path: 'assets', value: 'marble' }, { path: `${componentKey}.json` }]);
     }
 
     public registerComponent(componentKey) {

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from 'marble/src/lib/services/api.service';
 import { MarbleService } from 'marble/src/public-api';
-import { switchMap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 @Component({
     selector: 'lib-marble-button',
     templateUrl: './marble-button.component.html',
@@ -28,15 +28,12 @@ export class MarbleButtonComponent implements OnInit {
         this.apiService
             .post([{ path: 'marble', value: 'register' }], { componentKey: this.constructor.name })
             .pipe(
-                switchMap(() =>
-                    this.apiService.get([{ path: 'marble' }, { query: 'component', value: this.constructor.name }])
-                )
+                tap(() => {
+                    this.specification = this.marbleService.components['MarbleButtonComponent'][this.key];
+                })
             )
-            .subscribe((response) => {
+            .subscribe(() => {
                 this.isLoaded = true;
-                if (response) {
-                    this.specification = response;
-                }
             });
     }
 
