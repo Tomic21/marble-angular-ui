@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'marble/src/lib/services/api.service';
 @Component({
     selector: 'lib-marble-button',
     templateUrl: './marble-button.component.html',
@@ -20,10 +20,10 @@ export class MarbleButtonComponent implements OnInit {
 
     public isLoaded: boolean = false;
 
-    constructor(private http: HttpClient) {}
+    constructor(private apiService: ApiService) {}
 
     ngOnInit() {
-        this.http.get(`http://localhost:9000/marble?key=${this.key}`).subscribe((response) => {
+        this.apiService.get([{ path: 'marble' }, { query: 'key', value: this.key }]).subscribe((response) => {
             this.isLoaded = true;
             this.specification = response;
         });
@@ -35,7 +35,12 @@ export class MarbleButtonComponent implements OnInit {
     }
 
     public saveSpecification() {
-        this.http.post(`http://localhost:9000/marble?key=${this.key}`, this.specification).subscribe();
+        this.isLoaded = false;
+        this.apiService
+            .post([{ path: 'marble' }, { query: 'key', value: this.key }], this.specification)
+            .subscribe((response) => {
+                this.isLoaded = true;
+            });
     }
 
     public toggleEditorMode() {
