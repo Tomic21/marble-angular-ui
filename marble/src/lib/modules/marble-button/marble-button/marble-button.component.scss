@@ -1,4 +1,4 @@
-@import '../../../style/variables.scss';
+@import '../../../style/colors.scss';
 
 .marble-button {
     position: relative;
@@ -69,66 +69,66 @@
 }
 
 .danger {
-    background: $rose500;
-    color: $rose50;
+    background: $danger500;
+    color: $danger50;
     &:hover {
-        background: $rose400;
-        color: $rose50;
+        background: $danger400;
+        color: $danger50;
     }
     &:active {
-        background: $rose200;
-        color: $rose600;
+        background: $danger200;
+        color: $danger600;
     }
 }
 
 .warning {
-    background: $amber500;
-    color: $amber100;
+    background: $warning500;
+    color: $warning100;
     &:hover {
-        background: $amber400;
-        color: $amber100;
+        background: $warning400;
+        color: $warning100;
     }
     &:active {
-        background: $amber200;
-        color: $amber600;
+        background: $warning200;
+        color: $warning600;
     }
 }
 
 .info {
-    background: $sky400;
-    color: $sky100;
+    background: $lightBlue400;
+    color: $lightBlue100;
     &:hover {
-        background: $sky300;
-        color: $sky100;
+        background: $lightBlue300;
+        color: $lightBlue100;
     }
     &:active {
-        background: $sky100;
-        color: $sky500;
+        background: $lightBlue100;
+        color: $lightBlue500;
     }
 }
 
 .basic {
-    background: $zinc300;
-    color: $zinc800;
+    background: $grey300;
+    color: $grey800;
     &:hover {
-        background: $zinc200;
-        color: $zinc700;
+        background: $grey200;
+        color: $grey700;
     }
     &:active {
-        background: $zinc400;
-        color: $zinc100;
+        background: $grey400;
+        color: $grey100;
     }
 }
 
 .success {
-    background: $emerald400;
-    color: $emerald100;
+    background: $success400;
+    color: $success100;
     &:hover {
-        background: $emerald300;
-        color: $emerald100;
+        background: $success300;
+        color: $success100;
     }
     &:active {
-        background: $emerald100;
-        color: $emerald500;
+        background: $success100;
+        color: $success500;
     }
 }
