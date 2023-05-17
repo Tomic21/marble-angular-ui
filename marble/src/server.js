@@ -25,15 +25,20 @@ if (!fs.existsSync(defaultAssetsPath)) {
 
 app.get('/marble', (req, res) => {
     const key = req.query.key;
-    const config = fs.readFileSync(`${defaultAssetsPath}/${key}.json`);
-    res.send(config);
+    try {
+        const config = fs.readFileSync(`${defaultAssetsPath}/${key}.json`);
+        return res.send(config);
+    } catch (error) {
+        return res.send({
+            message: `Error ocurred while reading file : ${defaultAssetsPath}/${key}.json`,
+            error
+        });
+    }
 });
 
 app.post('/marble', (req, res) => {
     const key = req.query.key;
     const body = JSON.stringify(req.body);
-    console.log(key);
-    console.log(body);
 
     fs.writeFileSync(`${defaultAssetsPath}/${key}.json`, body);
 
