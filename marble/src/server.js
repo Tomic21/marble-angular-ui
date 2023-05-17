@@ -38,23 +38,28 @@ app.post('/marble/init', (req, res) => {
 
 app.get('/marble', (req, res) => {
     const componentKey = req.query.componentKey;
-    const uniqueKey = req.query.uniqueKey;
     try {
         const config = fs.readFileSync(`${defaultAssetsPath}/${componentKey}.json`);
         return res.send(config);
     } catch (error) {
-        return res.send({
-            message: `Error ocurred while reading file : ${defaultAssetsPath}/${componentKey}.json`,
-            error
-        });
+        return res.send(false);
     }
 });
 
 app.post('/marble', (req, res) => {
     const componentKey = req.query.componentKey;
-    const body = JSON.stringify(req.body);
+    const uniqueKey = req.query.uniqueKey;
 
-    fs.writeFileSync(`${defaultAssetsPath}/${componentKey}.json`, body);
+    const body = req.body;
+
+    let sameTypeComponents = {};
+    if (fs.existsSync(`${defaultAssetsPath}/${componentKey}.json`)) {
+        sameTypeComponents = JSON.parse(fs.readFileSync(`${defaultAssetsPath}/${componentKey}.json`));
+    }
+
+    sameTypeComponents[uniqueKey] = body;
+
+    fs.writeFileSync(`${defaultAssetsPath}/${componentKey}.json`, JSON.stringify(sameTypeComponents));
 
     res.send({ message: 'success' });
 });

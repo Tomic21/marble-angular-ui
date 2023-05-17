@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from 'marble/src/lib/services/api.service';
 import { MarbleService } from 'marble/src/public-api';
+import { switchMap } from 'rxjs/operators';
 @Component({
     selector: 'lib-marble-button',
     templateUrl: './marble-button.component.html',
@@ -26,13 +27,16 @@ export class MarbleButtonComponent implements OnInit {
     ngOnInit() {
         this.apiService
             .post([{ path: 'marble', value: 'register' }], { componentKey: this.constructor.name })
-            .subscribe();
-
-        this.apiService
-            .get([{ path: 'marble' }, { query: 'component', value: this.constructor.name }])
+            .pipe(
+                switchMap(() =>
+                    this.apiService.get([{ path: 'marble' }, { query: 'component', value: this.constructor.name }])
+                )
+            )
             .subscribe((response) => {
                 this.isLoaded = true;
-                this.specification = response;
+                if (response) {
+                    this.specification = response;
+                }
             });
     }
 
@@ -44,7 +48,14 @@ export class MarbleButtonComponent implements OnInit {
     public saveSpecification() {
         this.isLoaded = false;
         this.apiService
-            .post([{ path: 'marble' }, { query: 'key', value: this.key }], this.specification)
+            .post(
+                [
+                    { path: 'marble' },
+                    { query: 'componentKey', value: this.constructor.name },
+                    { query: 'uniqueKey', value: this.key }
+                ],
+                this.specification
+            )
             .subscribe((response) => {
                 this.isLoaded = true;
             });
