@@ -32,6 +32,8 @@
         &:hover {
             cursor: pointer;
             opacity: 1;
+            background: $grey700;
+            color: $grey50;
             transform: scale(1.2);
         }
     }
@@ -69,21 +71,21 @@
 }
 
 .danger {
-    background: $danger500;
-    color: $danger50;
+    background: $danger200;
+    color: $danger600;
     &:hover {
-        background: $danger400;
+        background: $danger300;
         color: $danger50;
     }
     &:active {
-        background: $danger200;
-        color: $danger600;
+        background: $danger100;
+        color: $danger500;
     }
 }
 
 .warning {
-    background: $warning500;
-    color: $warning100;
+    background: $warning200;
+    color: $warning700;
     &:hover {
         background: $warning400;
         color: $warning100;
@@ -108,21 +110,21 @@
 }
 
 .basic {
-    background: $grey300;
+    background: $grey200;
     color: $grey800;
     &:hover {
-        background: $grey200;
+        background: $grey100;
         color: $grey700;
     }
     &:active {
-        background: $grey400;
+        background: $grey300;
         color: $grey100;
     }
 }
 
 .success {
-    background: $success400;
-    color: $success100;
+    background: $success200;
+    color: $success800;
     &:hover {
         background: $success300;
         color: $success100;
