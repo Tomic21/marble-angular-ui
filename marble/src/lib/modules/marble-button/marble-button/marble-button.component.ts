@@ -26,15 +26,15 @@ export class MarbleButtonComponent implements OnInit {
 
     ngOnInit() {
         this.marbleService.isLoaded.subscribe((isLoaded) => {
-            if (isLoaded === true) {
-                this.apiService
-                    .post([{ path: 'marble', value: 'register' }], { componentKey: this.constructor.name })
-                    .subscribe(() => {
-                        this.specification = this.marbleService.components['MarbleButtonComponent'][this.key];
-                        if (!this.specification) this.specification = {};
-                        this.isLoaded = true;
-                    });
-            }
+            if (!isLoaded) return;
+
+            this.apiService
+                .post([{ path: 'marble', value: 'register' }], { componentKey: this.constructor.name })
+                .subscribe(() => {
+                    this.specification = this.marbleService.components['MarbleButtonComponent'][this.key];
+                    if (!this.specification) this.specification = {};
+                    this.isLoaded = true;
+                });
         });
     }
 
@@ -63,19 +63,23 @@ export class MarbleButtonComponent implements OnInit {
         if (!this.isPreview) this.editorMode = !this.editorMode;
     }
 
-    public getButtonStatusClass() {
+    public getButtonClasses(): string {
+        return this.getButtonStatusClass() + ' ' + this.getButtonBorderClass();
+    }
+
+    public getButtonStatusClass(): string {
         if (this.status) return this.status;
         if (this.specification.buttonClass) return this.specification.buttonClass;
         return 'basic';
     }
 
-    public getButtonBorderClass() {
+    public getButtonBorderClass(): string {
         if (this.borderRadius) return this.borderRadius;
         if (this.specification.borderRadius) return this.specification.borderRadius;
         return 'border-elegant';
     }
 
-    public getButtonText() {
+    public getButtonText(): string {
         if (this.text) return this.text;
         if (this.specification.buttonText) return this.specification.buttonText;
         return 'Button';

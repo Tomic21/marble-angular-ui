@@ -56,9 +56,18 @@
 
 .preview {
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .preview-text {
     margin: 1rem 0;
+    font-family: sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    color: $grey500;
 }
 
 .options-container {

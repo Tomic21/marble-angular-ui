@@ -1,11 +1,11 @@
-<button (click)="click.emit()" [class]="'marble-button' + ' ' + getButtonStatusClass() + ' ' + getButtonBorderClass()">
+<button (click)="click.emit()" [class]="'marble-button' + ' ' + getButtonClasses()">
     <span>{{ getButtonText() }}</span>
     <div *ngIf="!isPreview" (click)="toggleEditorMode()" class="edit-icon">Edit</div>
 </button>
 
 <div class="editor" *ngIf="editorMode">
     <div class="preview">
-        <div class="preview-text">Live Preview:</div>
+        <div class="preview-text">Live Preview</div>
         <lib-marble-button
             *ngIf="!isPreview"
             [isPreview]="true"
@@ -80,6 +80,7 @@
             (click)="toggleEditorMode()"
             *ngIf="!isPreview"
             [isPreview]="true"
+            [status]="'danger'"
             [text]="'Exit'"
         ></lib-marble-button>
     </div>

@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { CONFIG } from '../interfaces/config.interface';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subject, forkJoin } from 'rxjs';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -21,7 +22,6 @@ export class MarbleService {
             (components) => {
                 this.components = components;
                 this.isLoaded.next(true);
-                console.log(this.components);
             }
         );
     }
