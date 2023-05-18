@@ -10,6 +10,7 @@ export class MarbleButtonComponent implements OnInit {
     @Input() key: string = '';
     @Input() text: string = '';
     @Input() status: string = '';
+    @Input() borderRadius: string = '';
     @Input() isPreview: boolean = false;
     @Output() click: EventEmitter<any> = new EventEmitter();
 
@@ -37,8 +38,8 @@ export class MarbleButtonComponent implements OnInit {
         });
     }
 
-    public handleClassChange(buttonClass: string) {
-        this.specification.buttonClass = buttonClass;
+    public handlePropertyChange(propertyKey: string, propertyValue: string) {
+        this.specification[propertyKey] = propertyValue;
         this.saveSpecification();
     }
 
@@ -66,6 +67,12 @@ export class MarbleButtonComponent implements OnInit {
         if (this.status) return this.status;
         if (this.specification.buttonClass) return this.specification.buttonClass;
         return 'basic';
+    }
+
+    public getButtonBorderClass() {
+        if (this.borderRadius) return this.borderRadius;
+        if (this.specification.borderRadius) return this.specification.borderRadius;
+        return 'border-elegant';
     }
 
     public getButtonText() {

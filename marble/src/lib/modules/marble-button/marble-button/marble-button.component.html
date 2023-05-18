@@ -1,4 +1,4 @@
-<button (click)="click.emit()" [class]="'marble-button' + ' ' + getButtonStatusClass()">
+<button (click)="click.emit()" [class]="'marble-button' + ' ' + getButtonStatusClass() + ' ' + getButtonBorderClass()">
     <span>{{ getButtonText() }}</span>
     <div *ngIf="!isPreview" (click)="toggleEditorMode()" class="edit-icon">Edit</div>
 </button>
@@ -15,32 +15,63 @@
     </div>
     <div class="options-container">
         <lib-marble-button
-            (click)="handleClassChange('danger')"
+            (click)="handlePropertyChange('buttonClass', 'danger')"
             *ngIf="!isPreview"
             [isPreview]="true"
             [status]="'danger'"
             [text]="'danger'"
         ></lib-marble-button>
         <lib-marble-button
-            (click)="handleClassChange('success')"
+            (click)="handlePropertyChange('buttonClass', 'success')"
             *ngIf="!isPreview"
             [isPreview]="true"
             [status]="'success'"
             [text]="'success'"
         ></lib-marble-button>
         <lib-marble-button
-            (click)="handleClassChange('warning')"
+            (click)="handlePropertyChange('buttonClass', 'warning')"
             *ngIf="!isPreview"
             [isPreview]="true"
             [status]="'warning'"
             [text]="'warning'"
         ></lib-marble-button>
         <lib-marble-button
-            (click)="handleClassChange('basic')"
+            (click)="handlePropertyChange('buttonClass', 'basic')"
             *ngIf="!isPreview"
             [isPreview]="true"
             [status]="'basic'"
             [text]="'basic'"
+        ></lib-marble-button>
+    </div>
+
+    <div class="options-container">
+        <lib-marble-button
+            (click)="handlePropertyChange('borderRadius', 'border-corporate')"
+            *ngIf="!isPreview"
+            [isPreview]="true"
+            [borderRadius]="'border-corporate'"
+            [text]="'border-corporate'"
+        ></lib-marble-button>
+        <lib-marble-button
+            (click)="handlePropertyChange('borderRadius', 'border-elegant')"
+            *ngIf="!isPreview"
+            [isPreview]="true"
+            [borderRadius]="'border-elegant'"
+            [text]="'border-elegant'"
+        ></lib-marble-button>
+        <lib-marble-button
+            (click)="handlePropertyChange('borderRadius', 'border-playful')"
+            *ngIf="!isPreview"
+            [isPreview]="true"
+            [borderRadius]="'border-playful'"
+            [text]="'border-playful'"
+        ></lib-marble-button>
+        <lib-marble-button
+            (click)="handlePropertyChange('borderRadius', 'border-full')"
+            *ngIf="!isPreview"
+            [isPreview]="true"
+            [borderRadius]="'border-full'"
+            [text]="'border-full'"
         ></lib-marble-button>
     </div>
 
