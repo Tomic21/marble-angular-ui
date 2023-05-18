@@ -20,13 +20,19 @@
         cursor: pointer;
     }
 
+    &:hover .edit-icon {
+        display: block;
+    }
+
     .edit-icon {
+        display: none;
         position: absolute;
         top: -0.5rem;
         right: -0.5rem;
-        background: white;
+        background: $grey400;
+        color: $grey100;
         padding: 0.1rem 0.2rem;
-        opacity: 0.65;
+        opacity: 0.75;
         transition: 0.2s ease-in-out;
 
         &:hover {
