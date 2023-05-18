@@ -36,6 +36,11 @@ export class ApiService {
         const { url, params } = this.requestBuilder(parameters);
         return this.http.get(url, { params });
     }
+
+    getRaw(path: string): Observable<any> {
+        return this.http.get(path);
+    }
+
     post(parameters: (RequestPath | RequestQuery)[], body: any): Observable<any> {
         const { url, params } = this.requestBuilder(parameters);
         return this.http.post(url, body, { params });
