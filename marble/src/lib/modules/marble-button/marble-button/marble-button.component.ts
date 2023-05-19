@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from 'marble/src/lib/services/api.service';
 import { MarbleService } from 'marble/src/public-api';
-import { switchMap } from 'rxjs/operators';
 @Component({
     selector: 'lib-marble-button',
     templateUrl: './marble-button.component.html',
@@ -21,12 +20,17 @@ export class MarbleButtonComponent implements OnInit {
 
     @Input() public specification: any = {};
 
+    /* public editorSpecification: any = {
+        key: 'MarbleButtonComponent',
+        components: [[{ propertyKey: 'buttonClass', propertyValue: 'danger', text:"" }]]
+    }; */
+
     public isLoaded: boolean = false;
 
     constructor(private apiService: ApiService, private marbleService: MarbleService) {}
 
     ngOnInit() {
-        this.marbleService.registerComponent(this.constructor.name, this.key).subscribe((specification) => {
+        this.marbleService.prepareComponent(this.constructor.name, this.key).subscribe((specification) => {
             this.specification = specification;
             this.isLoaded = true;
         });

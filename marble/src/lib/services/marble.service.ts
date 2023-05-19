@@ -46,8 +46,10 @@ export class MarbleService {
         return this.apiService.getRaw(`assets/marble/${componentKey}.json`);
     }
 
-    public registerComponent(componentKey, uniqueKey): Observable<any> {
-        return this.apiService.post([{ path: 'marble', value: 'register' }], { componentKey }).pipe(
+    public prepareComponent(componentKey, uniqueKey): Observable<any> {
+        const preparationProcess: any = this.production ? of(true) : this.registerComponent(componentKey);
+
+        return preparationProcess.pipe(
             switchMap(() => this.isLoaded),
             switchMap((isLoaded) => {
                 if (!isLoaded) return null;
@@ -56,5 +58,10 @@ export class MarbleService {
                 return of(specification);
             })
         );
+    }
+
+    /* Development only */
+    private registerComponent(componentKey) {
+        return this.apiService.post([{ path: 'marble', value: 'register' }], { componentKey });
     }
 }
