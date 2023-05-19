@@ -1,4 +1,4 @@
-<button (click)="click.emit()" [class]="'marble-button' + ' ' + getButtonClasses()">
+<button *ngIf="isLoaded || isPreview" (click)="click.emit()" [class]="'marble-button' + ' ' + getButtonClasses()">
     <span>{{ getButtonText() }}</span>
     <div *ngIf="!isPreview" (click)="toggleEditorMode()" class="edit-icon">Edit</div>
 </button>
