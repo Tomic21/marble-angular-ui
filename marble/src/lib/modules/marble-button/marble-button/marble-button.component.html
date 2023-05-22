@@ -1,6 +1,12 @@
 <button *ngIf="isLoaded || isPreview" (click)="click.emit()" [class]="'marble-button' + ' ' + getButtonClasses()">
     <span>{{ getButtonText() }}</span>
-    <div *ngIf="!isPreview" (click)="toggleEditorMode()" class="edit-icon">Edit</div>
+    <div
+        *ngIf="!isPreview"
+        (click)="editorService.handleEditorDialog($event, key, editorSpecification)"
+        class="edit-icon"
+    >
+        Edit
+    </div>
 </button>
 
 <div class="editor" *ngIf="editorMode">
@@ -77,7 +83,7 @@
 
     <div class="control-buttons">
         <lib-marble-button
-            (click)="toggleEditorMode()"
+            (click)="editorService.handleEditorDialog($event, key)"
             *ngIf="!isPreview"
             [isPreview]="true"
             [status]="'danger'"

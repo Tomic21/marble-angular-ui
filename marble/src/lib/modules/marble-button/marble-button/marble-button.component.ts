@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ApiService } from 'marble/src/lib/services/api.service';
+import { EditorService } from 'marble/src/lib/services/editor.service';
 import { MarbleService } from 'marble/src/public-api';
 @Component({
     selector: 'lib-marble-button',
@@ -20,14 +21,18 @@ export class MarbleButtonComponent implements OnInit {
 
     @Input() public specification: any = {};
 
-    /* public editorSpecification: any = {
+    public editorSpecification: any = {
         key: 'MarbleButtonComponent',
-        components: [[{ propertyKey: 'buttonClass', propertyValue: 'danger', text:"" }]]
-    }; */
+        components: [[{ propertyKey: 'buttonClass', propertyValue: 'danger', text: '' }]]
+    };
 
     public isLoaded: boolean = false;
 
-    constructor(private apiService: ApiService, private marbleService: MarbleService) {}
+    constructor(
+        private apiService: ApiService,
+        private marbleService: MarbleService,
+        public editorService: EditorService
+    ) {}
 
     ngOnInit() {
         this.marbleService.prepareComponent(this.constructor.name, this.key).subscribe((specification) => {
@@ -55,10 +60,6 @@ export class MarbleButtonComponent implements OnInit {
             .subscribe((response) => {
                 this.isLoaded = true;
             });
-    }
-
-    public toggleEditorMode() {
-        if (!this.isPreview) this.editorMode = !this.editorMode;
     }
 
     public getButtonClasses(): string {
