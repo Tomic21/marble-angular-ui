@@ -1,13 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'lib-editor',
     templateUrl: './editor.component.html',
     styleUrls: ['./editor.component.scss']
 })
-export class EditorComponent implements OnInit {
-    @Input() specification;
-    ngOnInit(): void {
-        console.log(this.specification);
-    }
+export class EditorComponent {
+    @Input() specification: any = null;
+    @Output() handleCloseClicked: EventEmitter<any> = new EventEmitter();
 }

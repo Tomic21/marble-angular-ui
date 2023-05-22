@@ -7,6 +7,8 @@ import { EditorComponent } from '../components/editor/editor.component';
 export class EditorService {
     public editorMode: boolean = false;
     private editorRef: any;
+    private closeDialogSubscription: any;
+
     private lastActivatedComponentUniqueKey: string = '';
 
     constructor(
@@ -24,7 +26,10 @@ export class EditorService {
         if (this.editorMode && !this.editorRef) this.appendEditorComponentToBody(EditorComponent);
         if (!this.editorMode && this.editorRef) this.closeEditor();
 
-        if (editorSpecification && this.editorMode) this.editorRef.instance.specification = editorSpecification;
+        if (editorSpecification && this.editorMode) {
+            console.log('it is updated');
+            this.editorRef.instance.specification = editorSpecification;
+        }
 
         this.lastActivatedComponentUniqueKey = uniqueKey;
     }
@@ -32,6 +37,14 @@ export class EditorService {
     private appendEditorComponentToBody(component: any) {
         // 1. Create a component reference from the component.
         this.editorRef = this.componentFactoryResolver.resolveComponentFactory(component).create(this.injector);
+
+        this.closeDialogSubscription = this.editorRef.instance.handleCloseClicked;
+        this.closeDialogSubscription.subscribe((updatedSpecification) => {
+            if (updatedSpecification) this.updateSpecification(updatedSpecification);
+
+            this.lastActivatedComponentUniqueKey = '';
+            this.closeEditor();
+        });
 
         const style = this.editorRef.location.nativeElement.style;
 
@@ -51,6 +64,8 @@ export class EditorService {
         // 5. Append DOM element to the body.
         document.body.appendChild(domElem);
     }
+
+    private updateSpecification(updatedSpecification) {}
 
     private closeEditor() {
         this.appRef.detachView(this.editorRef.hostView);
