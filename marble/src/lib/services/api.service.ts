@@ -7,6 +7,8 @@ import { RequestPath, RequestQuery } from '../interfaces/api.interface';
     providedIn: 'root'
 })
 export class ApiService {
+    public production: boolean;
+
     constructor(private http: HttpClient) {}
 
     requestBuilder(parameters: (RequestPath | RequestQuery)[]) {

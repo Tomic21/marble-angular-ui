@@ -75,8 +75,6 @@ app.post('/marble/register', (req, res) => {
 
     components[componentKey] = true;
 
-    console.log(components);
-
     fs.writeFileSync(`${defaultAssetsPath}/registered-components.json`, JSON.stringify(components));
 
     res.send({ message: 'success' });

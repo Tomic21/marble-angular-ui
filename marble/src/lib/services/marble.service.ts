@@ -15,6 +15,7 @@ export class MarbleService {
 
     constructor(private apiService: ApiService, @Inject(CONFIG) private config: any) {
         this.production = this.config.production;
+        this.apiService.production = this.config.production;
 
         const init: Observable<any> = this.production ? this.handleProductionInit() : this.handleDevelopmentInit();
 
@@ -26,15 +27,15 @@ export class MarbleService {
         );
     }
 
-    public handleProductionInit(): Observable<any> {
+    private handleProductionInit(): Observable<any> {
         return this.apiService.getRaw(`assets/marble/registered-components.json`);
     }
 
-    public handleDevelopmentInit(): Observable<any> {
+    private handleDevelopmentInit(): Observable<any> {
         return this.apiService.post([{ path: 'marble', value: 'init' }], {}).pipe();
     }
 
-    getJoinedCalls(componentsMap) {
+    private getJoinedCalls(componentsMap) {
         const joinedCalls: any = {};
         for (const key of Object.keys(componentsMap)) {
             joinedCalls[key] = this.fetchComponentData(key);
