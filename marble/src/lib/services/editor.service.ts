@@ -35,7 +35,7 @@ export class EditorService {
 
         const style = this.editorRef.location.nativeElement.style;
 
-        style.position = 'absolute';
+        style.position = 'fixed';
         style.top = '0';
         style.left = '0';
         style.width = '100%';
